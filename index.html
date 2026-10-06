@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visu Biología y Geología</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+header {
+    background: #263238;
+    color: white;
+    padding: 24px 18px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin: 7px 0 0;
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px 16px 40px;
+}
+
+.search {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.card:active {
+    transform: scale(0.97);
+}
+
+.icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.back {
+    border: none;
+    background: none;
+    font-size: 16px;
+    padding: 8px 0;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 26px;
+    margin: 5px 0 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.item {
+    background: white;
+    padding: 17px;
+    border-radius: 13px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.item strong {
+    font-size: 17px;
+}
+
+.detail {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.detail img {
+    width: 100%;
+    display: block;
+    background: #e5e7eb;
+}
+
+.detail-content {
+    padding: 20px;
+}
+
+.detail-content h2 {
+    margin-top: 0;
+}
+
+.data {
+    margin-top: 15px;
+}
+
+.data div {
+    padding: 9px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.label {
+    font-weight: bold;
+}
+
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔬 VISU BIOLOGÍA Y GEOLOGÍA</h1>
+    <p>Material de estudio</p>
+</header>
+
+<div class="container">
+
+    <!-- INICIO -->
+    <section id="home">
+        <input
+            class="search"
+            id="search"
+            type="text"
+            placeholder="🔎 Buscar mineral, roca..."
+        >
+
+        <div class="grid">
+
+            <div class="card" onclick="showSection('minerales')">
+                <div class="icon">💎</div>
+                <h2>Minerales</h2>
+                <p>Clasificación y visu</p>
+            </div>
+
+            <div class="card" onclick="showSection('rocas')">
+                <div class="icon">🪨</div>
+                <h2>Rocas</h2>
+                <p>Ígneas, sedimentarias y metamórficas</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🦴</div>
+                <h2>Fósiles</h2>
+                <p>Próximamente</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌿</div>
+                <h2>Botánica</h2>
+                <p>Próximamente</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🐚</div>
+                <h2>Zoología</h2>
+                <p>Próximamente</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔬</div>
+                <h2>Otros</h2>
+                <p>Próximamente</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- MINERALES -->
+    <section id="minerales" class="hidden">
+
+        <button class="back" onclick="goHome()">← Inicio</button>
+
+        <h1 class="title">💎 Minerales</h1>
+
+        <div class="grid">
+
+            <div class="card" onclick="showSection('silicatos')">
+                <div class="icon">💎</div>
+                <h2>Silicatos</h2>
+            </div>
+
+            <div class="card" onclick="showSection('carbonatos')">
+                <div class="icon">🪨</div>
+                <h2>Carbonatos</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚫</div>
+                <h2>Sulfuros</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔴</div>
+                <h2>Óxidos</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">🟡</div>
+                <h2>Sulfatos</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚪</div>
+                <h2>Halogenuros</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">✨</div>
+                <h2>Elementos nativos</h2>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CARBONATOS -->
+    <section id="carbonatos" class="hidden">
+
+        <button class="back" onclick="showSection('minerales')">
+            ← Minerales
+        </button>
+
+        <h1 class="title">Carbonatos</h1>
+
+        <div class="item" onclick="showSection('calcita')">
+            <strong>Calcita</strong>
+        </div>
+
+        <div class="item">
+            <strong>Dolomita</strong>
+        </div>
+
+        <div class="item">
+            <strong>Aragonito</strong>
+        </div>
+
+        <div class="item">
+            <strong>Azurita</strong>
+        </div>
+
+        <div class="item">
+            <strong>Malaquita</strong>
+        </div>
+
+    </section>
+
+
+    <!-- SILICATOS -->
+    <section id="silicatos" class="hidden">
+
+        <button class="back" onclick="showSection('minerales')">
+            ← Minerales
+        </button>
+
+        <h1 class="title">Silicatos</h1>
+
+        <div class="item">
+            <strong>Cuarzo</strong>
+        </div>
+
+        <div class="item">
+            <strong>Ortosa</strong>
+        </div>
+
+        <div class="item">
+            <strong>Plagioclasa</strong>
+        </div>
+
+        <div class="item">
+            <strong>Moscovita</strong>
+        </div>
+
+        <div class="item">
+            <strong>Biotita</strong>
+        </div>
+
+        <div class="item">
+            <strong>Olivino</strong>
+        </div>
+
+    </section>
+
+
+    <!-- ROCAS -->
+    <section id="rocas" class="hidden">
+
+        <button class="back" onclick="goHome()">← Inicio</button>
+
+        <h1 class="title">🪨 Rocas</h1>
+
+        <div class="grid">
+
+            <div class="card">
+                <div class="icon">🌋</div>
+                <h2>Ígneas</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏜️</div>
+                <h2>Sedimentarias</h2>
+            </div>
+
+            <div class="card">
+                <div class="icon">⛰️</div>
+                <h2>Metamórficas</h2>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CALCITA -->
+    <section id="calcita" class="hidden">
+
+        <button class="back" onclick="showSection('carbonatos')">
+            ← Carbonatos
+        </button>
+
+        <div class="detail">
+
+            <div style="
+                height:260px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#e5e7eb;
+                font-size:70px;
+            ">
+                💎
+            </div>
+
+            <div class="detail-content">
+
+                <h2>Calcita</h2>
+
+                <p>
+                    Carbonato de calcio. Mineral muy frecuente,
+                    característico por su dureza baja y su reacción con
+                    ácido clorhídrico diluido.
+                </p>
+
+                <div class="data">
+
+                    <div>
+                        <span class="label">Fórmula:</span>
+                        CaCO₃
+                    </div>
+
+                    <div>
+                        <span class="label">Dureza:</span>
+                        3
+                    </div>
+
+                    <div>
+                        <span class="label">Raya:</span>
+                        Blanca
+                    </div>
+
+                    <div>
+                        <span class="label">Brillo:</span>
+                        Vítreo
+                    </div>
+
+                    <div>
+                        <span class="label">Tipo:</span>
+                        Carbonato
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function showSection(id) {
+
+    const sections = document.querySelectorAll("section");
+
+    sections.forEach(section => {
+        section.classList.add("hidden");
+    });
+
+    document.getElementById(id).classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+}
+
+function goHome() {
+    showSection("home");
+}
+
+</script>
+
+</body>
+</html>

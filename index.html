@@ -1663,6 +1663,11 @@ function ficha(nombre) {
         .textContent = obtenerTipo(nombre);
 
 
+    document
+        .getElementById("imagenMineral")
+        .src = "img/minerales/" + nombre.toLowerCase() + ".png";
+
+
     mostrar("ficha");
 
 }

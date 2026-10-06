@@ -1,717 +1,1759 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Visu Biología y Geología</title>
 
 <style>
+
+/* =========================
+   GENERAL
+========================= */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f4f5;
+    color: #263238;
 }
 
 header {
-    background: #263238;
+    background: linear-gradient(135deg, #263238, #455a64);
     color: white;
-    padding: 20px;
+    padding: 25px 15px;
     text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.55rem;
 }
 
 main {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     padding: 20px;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 14px 18px;
-    font-size: 1rem;
-    cursor: pointer;
-    background: #455a64;
-    color: white;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-.back {
-    margin-bottom: 20px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
-}
-
-.card {
-    background: white;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.15s;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-}
-
-.card h3 {
-    margin-top: 0;
-}
-
-.section-title {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-/* Ficha del mineral */
-
-.mineral-ficha {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.foto {
-    width: 100%;
-    height: 250px;
-    background: #ddd;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.dato {
-    margin: 8px 0;
-}
-
-.dato strong {
-    display: inline-block;
-    min-width: 120px;
 }
 
 .hidden {
     display: none;
 }
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.section-title {
+    margin-top: 5px;
+    margin-bottom: 22px;
+    font-size: 1.5rem;
+}
+
+.subtitulo {
+    color: #607d8b;
+    margin-top: -12px;
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   BOTÓN VOLVER
+========================= */
+
+.back {
+    border: none;
+    background: #455a64;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back:hover {
+    background: #37474f;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px 15px;
+    min-height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 16px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+    font-size: 3.2rem;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.card p {
+    margin: 7px 0 0;
+    color: #78909c;
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   COLORES DE TARJETAS
+========================= */
+
+.card-minerales {
+    border-top: 6px solid #26a69a;
+}
+
+.card-rocas {
+    border-top: 6px solid #795548;
+}
+
+.card-fosiles {
+    border-top: 6px solid #8d6e63;
+}
+
+.card-botanica {
+    border-top: 6px solid #66bb6a;
+}
+
+.card-zoologia {
+    border-top: 6px solid #42a5f5;
+}
+
+.card-otros {
+    border-top: 6px solid #ab47bc;
+}
+
+
+/* =========================
+   FICHA
+========================= */
+
+.mineral-ficha {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.ficha-titulo {
+    margin-top: 0;
+    font-size: 1.7rem;
+}
+
+.foto {
+    width: 100%;
+    min-height: 280px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eceff1,
+            #cfd8dc
+        );
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #607d8b;
+    font-size: 1.1rem;
+
+    margin-bottom: 22px;
+}
+
+.dato {
+    padding: 11px 0;
+    border-bottom: 1px solid #eceff1;
+}
+
+.dato strong {
+    display: inline-block;
+    width: 120px;
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 500px) {
+
+    main {
+        padding: 15px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 145px;
+        padding: 15px 8px;
+    }
+
+    .card-icon {
+        font-size: 2.7rem;
+    }
+
+    .card h3 {
+        font-size: 0.95rem;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     CABECERA
+========================= -->
+
 <header>
+
     <h1>🔬 VISU BIOLOGÍA Y GEOLOGÍA</h1>
+
 </header>
+
 
 <main>
 
-<!-- INICIO -->
+
+<!-- =====================================================
+     INICIO
+===================================================== -->
 
 <section id="inicio">
-    <h2 class="section-title">¿Qué quieres estudiar?</h2>
+
+    <h2 class="section-title">
+        ¿Qué quieres estudiar?
+    </h2>
 
     <div class="grid">
-        <div class="card" onclick="mostrar('minerales')">
-            <h3>💎 Minerales</h3>
-            <p>Clasificación y visu de minerales</p>
+
+
+        <div
+            class="card card-minerales"
+            onclick="mostrar('minerales')"
+        >
+
+            <div class="card-icon">💎</div>
+
+            <h3>Minerales</h3>
+
+            <p>Clasificación y visu</p>
+
         </div>
 
-        <div class="card" onclick="mostrar('rocas')">
-            <h3>🪨 Rocas</h3>
-            <p>Clasificación y visu de rocas</p>
+
+        <div
+            class="card card-rocas"
+            onclick="mostrar('rocas')"
+        >
+
+            <div class="card-icon">🪨</div>
+
+            <h3>Rocas</h3>
+
+            <p>Clasificación y visu</p>
+
         </div>
 
-        <div class="card">
-            <h3>🦴 Fósiles</h3>
+
+        <div class="card card-fosiles">
+
+            <div class="card-icon">🦴</div>
+
+            <h3>Fósiles</h3>
+
             <p>Próximamente</p>
+
         </div>
 
-        <div class="card">
-            <h3>🌱 Botánica</h3>
+
+        <div class="card card-botanica">
+
+            <div class="card-icon">🌱</div>
+
+            <h3>Botánica</h3>
+
             <p>Próximamente</p>
+
         </div>
 
-        <div class="card">
-            <h3>🐾 Zoología</h3>
+
+        <div class="card card-zoologia">
+
+            <div class="card-icon">🐾</div>
+
+            <h3>Zoología</h3>
+
             <p>Próximamente</p>
+
         </div>
 
-        <div class="card">
-            <h3>🔬 Otros</h3>
+
+        <div class="card card-otros">
+
+            <div class="card-icon">🔬</div>
+
+            <h3>Otros</h3>
+
             <p>Próximamente</p>
+
         </div>
+
+
     </div>
+
 </section>
 
 
-<!-- MINERALES -->
+
+<!-- =====================================================
+     MINERALES
+===================================================== -->
 
 <section id="minerales" class="hidden">
 
-    <button class="back" onclick="mostrar('inicio')">
+    <button
+        class="back"
+        onclick="mostrar('inicio')"
+    >
         ← Volver
     </button>
 
-    <h2>💎 Minerales</h2>
+
+    <h2 class="section-title">
+        💎 Minerales
+    </h2>
+
+    <p class="subtitulo">
+        Clasificación química
+    </p>
+
 
     <div class="grid">
 
-        <div class="card" onclick="mostrar('nativos')">
+
+        <div
+            class="card"
+            onclick="mostrar('nativos')"
+        >
+
+            <div class="card-icon">🟡</div>
+
             <h3>Elementos nativos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('sulfuros')">
+
+        <div
+            class="card"
+            onclick="mostrar('sulfuros')"
+        >
+
+            <div class="card-icon">⚫</div>
+
             <h3>Sulfuros</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('oxidos')">
+
+        <div
+            class="card"
+            onclick="mostrar('oxidos')"
+        >
+
+            <div class="card-icon">🔴</div>
+
             <h3>Óxidos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('haluros')">
+
+        <div
+            class="card"
+            onclick="mostrar('haluros')"
+        >
+
+            <div class="card-icon">🧂</div>
+
             <h3>Haluros</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('carbonatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('carbonatos')"
+        >
+
+            <div class="card-icon">🔷</div>
+
             <h3>Carbonatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('sulfatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('sulfatos')"
+        >
+
+            <div class="card-icon">⚪</div>
+
             <h3>Sulfatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('silicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('silicatos')"
+        >
+
+            <div class="card-icon">💠</div>
+
             <h3>Silicatos</h3>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- ELEMENTOS NATIVOS -->
+
+<!-- =====================================================
+     ELEMENTOS NATIVOS
+===================================================== -->
 
 <section id="nativos" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Elementos nativos</h2>
+
+    <h2 class="section-title">
+        🟡 Elementos nativos
+    </h2>
+
 
     <div class="grid">
-        <div class="card" onclick="ficha('Oro')">
+
+
+        <div
+            class="card"
+            onclick="ficha('Oro')"
+        >
+
+            <div class="card-icon">🥇</div>
+
             <h3>Oro</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Plata')">
+
+        <div
+            class="card"
+            onclick="ficha('Plata')"
+        >
+
+            <div class="card-icon">🥈</div>
+
             <h3>Plata</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Cobre')">
+
+        <div
+            class="card"
+            onclick="ficha('Cobre')"
+        >
+
+            <div class="card-icon">🟠</div>
+
             <h3>Cobre</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Azufre')">
+
+        <div
+            class="card"
+            onclick="ficha('Azufre')"
+        >
+
+            <div class="card-icon">🟡</div>
+
             <h3>Azufre</h3>
+
         </div>
+
+
     </div>
+
 </section>
 
 
-<!-- SULFUROS -->
+
+<!-- =====================================================
+     SULFUROS
+===================================================== -->
 
 <section id="sulfuros" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Sulfuros</h2>
+
+    <h2 class="section-title">
+        ⚫ Sulfuros
+    </h2>
+
 
     <div class="grid">
-        <div class="card" onclick="ficha('Antimonita')">
+
+
+        <div
+            class="card"
+            onclick="ficha('Antimonita')"
+        >
+
+            <div class="card-icon">🪨</div>
+
             <h3>Antimonita</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Cinabrio')">
+
+        <div
+            class="card"
+            onclick="ficha('Cinabrio')"
+        >
+
+            <div class="card-icon">🔴</div>
+
             <h3>Cinabrio</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Esfalerita')">
+
+        <div
+            class="card"
+            onclick="ficha('Esfalerita')"
+        >
+
+            <div class="card-icon">🟤</div>
+
             <h3>Esfalerita</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Galena')">
+
+        <div
+            class="card"
+            onclick="ficha('Galena')"
+        >
+
+            <div class="card-icon">⚙️</div>
+
             <h3>Galena</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Pirita')">
+
+        <div
+            class="card"
+            onclick="ficha('Pirita')"
+        >
+
+            <div class="card-icon">✨</div>
+
             <h3>Pirita</h3>
+
         </div>
+
+
     </div>
+
 </section>
 
 
-<!-- ÓXIDOS -->
+
+<!-- =====================================================
+     ÓXIDOS
+===================================================== -->
 
 <section id="oxidos" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Óxidos</h2>
+
+    <h2 class="section-title">
+        🔴 Óxidos
+    </h2>
+
 
     <div class="grid">
-        <div class="card" onclick="ficha('Corindón')">
+
+
+        <div
+            class="card"
+            onclick="ficha('Corindón')"
+        >
+
+            <div class="card-icon">💎</div>
+
             <h3>Corindón</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Rubí')">
+
+        <div
+            class="card"
+            onclick="ficha('Rubí')"
+        >
+
+            <div class="card-icon">❤️</div>
+
             <h3>Rubí</h3>
+
             <p>Variedad de corindón</p>
+
         </div>
 
-        <div class="card" onclick="ficha('Zafiro')">
+
+        <div
+            class="card"
+            onclick="ficha('Zafiro')"
+        >
+
+            <div class="card-icon">💙</div>
+
             <h3>Zafiro</h3>
+
             <p>Variedad de corindón</p>
+
         </div>
+
+
     </div>
+
 </section>
 
 
-<!-- HALUROS -->
+
+<!-- =====================================================
+     HALUROS
+===================================================== -->
 
 <section id="haluros" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Haluros</h2>
+
+    <h2 class="section-title">
+        🧂 Haluros
+    </h2>
+
 
     <div class="grid">
-        <div class="card" onclick="ficha('Silvina')">
+
+
+        <div
+            class="card"
+            onclick="ficha('Silvina')"
+        >
+
+            <div class="card-icon">🧂</div>
+
             <h3>Silvina</h3>
+
         </div>
+
+
     </div>
+
 </section>
 
 
-<!-- CARBONATOS -->
+
+<!-- =====================================================
+     CARBONATOS
+===================================================== -->
 
 <section id="carbonatos" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Carbonatos</h2>
+
+    <h2 class="section-title">
+        🔷 Carbonatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Aragonito')">
+
+        <div
+            class="card"
+            onclick="ficha('Aragonito')"
+        >
+
+            <div class="card-icon">🔷</div>
+
             <h3>Aragonito</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Calcita')">
+
+        <div
+            class="card"
+            onclick="ficha('Calcita')"
+        >
+
+            <div class="card-icon">🤍</div>
+
             <h3>Calcita</h3>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- SULFATOS -->
+
+<!-- =====================================================
+     SULFATOS
+===================================================== -->
 
 <section id="sulfatos" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Sulfatos</h2>
+
+    <h2 class="section-title">
+        ⚪ Sulfatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Celestina')">
+
+        <div
+            class="card"
+            onclick="ficha('Celestina')"
+        >
+
+            <div class="card-icon">💙</div>
+
             <h3>Celestina</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Rosa del desierto')">
+
+        <div
+            class="card"
+            onclick="ficha('Rosa del desierto')"
+        >
+
+            <div class="card-icon">🌹</div>
+
             <h3>Rosa del desierto</h3>
+
             <p>Forma de yeso</p>
+
         </div>
 
-        <div class="card" onclick="ficha('Yeso')">
+
+        <div
+            class="card"
+            onclick="ficha('Yeso')"
+        >
+
+            <div class="card-icon">🤍</div>
+
             <h3>Yeso</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Yeso fibroso')">
+
+        <div
+            class="card"
+            onclick="ficha('Yeso fibroso')"
+        >
+
+            <div class="card-icon">🧵</div>
+
             <h3>Yeso fibroso</h3>
-            <p>Variedad/hábito del yeso</p>
+
+            <p>Variedad de yeso</p>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- SILICATOS -->
+
+<!-- =====================================================
+     SILICATOS
+===================================================== -->
 
 <section id="silicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('minerales')">
+    <button
+        class="back"
+        onclick="mostrar('minerales')"
+    >
         ← Minerales
     </button>
 
-    <h2>Silicatos</h2>
+
+    <h2 class="section-title">
+        💠 Silicatos
+    </h2>
+
+
+    <p class="subtitulo">
+        Clasificación según la estructura del tetraedro de silicio
+    </p>
+
 
     <div class="grid">
 
-        <div class="card" onclick="mostrar('nesosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('nesosilicatos')"
+        >
+
+            <div class="card-icon">🔹</div>
+
             <h3>Nesosilicatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('sorosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('sorosilicatos')"
+        >
+
+            <div class="card-icon">🔗</div>
+
             <h3>Sorosilicatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('ciclosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('ciclosilicatos')"
+        >
+
+            <div class="card-icon">⭕</div>
+
             <h3>Ciclosilicatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('inosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('inosilicatos')"
+        >
+
+            <div class="card-icon">〰️</div>
+
             <h3>Inosilicatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('filosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('filosilicatos')"
+        >
+
+            <div class="card-icon">📄</div>
+
             <h3>Filosilicatos</h3>
+
         </div>
 
-        <div class="card" onclick="mostrar('tectosilicatos')">
+
+        <div
+            class="card"
+            onclick="mostrar('tectosilicatos')"
+        >
+
+            <div class="card-icon">🕸️</div>
+
             <h3>Tectosilicatos</h3>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- NESOSILICATOS -->
+
+<!-- =====================================================
+     NESOSILICATOS
+===================================================== -->
 
 <section id="nesosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Nesosilicatos</h2>
+
+    <h2 class="section-title">
+        🔹 Nesosilicatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Topacio')">
+
+        <div
+            class="card"
+            onclick="ficha('Topacio')"
+        >
+
+            <div class="card-icon">💎</div>
+
             <h3>Topacio</h3>
+
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- SOROSILICATOS -->
+
+<!-- =====================================================
+     SOROSILICATOS
+===================================================== -->
 
 <section id="sorosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Sorosilicatos</h2>
+
+    <h2 class="section-title">
+        🔗 Sorosilicatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Epidota')">
+
+        <div
+            class="card"
+            onclick="ficha('Epidota')"
+        >
+
+            <div class="card-icon">💚</div>
+
             <h3>Epidota</h3>
+
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- CICLOSILICATOS -->
+
+<!-- =====================================================
+     CICLOSILICATOS
+===================================================== -->
 
 <section id="ciclosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Ciclosilicatos</h2>
+
+    <h2 class="section-title">
+        ⭕ Ciclosilicatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Esmeralda')">
+
+        <div
+            class="card"
+            onclick="ficha('Esmeralda')"
+        >
+
+            <div class="card-icon">💚</div>
+
             <h3>Esmeralda</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Turmalina')">
-            <h3>Turmalina (chorlo)</h3>
+
+        <div
+            class="card"
+            onclick="ficha('Turmalina')"
+        >
+
+            <div class="card-icon">🌈</div>
+
+            <h3>Turmalina</h3>
+
+            <p>Chorlo</p>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- INOSILICATOS -->
+
+<!-- =====================================================
+     INOSILICATOS
+===================================================== -->
 
 <section id="inosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Inosilicatos</h2>
+
+    <h2 class="section-title">
+        〰️ Inosilicatos
+    </h2>
+
 
     <div class="grid">
 
+
         <div class="card">
+
+            <div class="card-icon">❓</div>
+
             <h3>Próximamente</h3>
-            <p>Aquí añadiremos los inosilicatos.</p>
+
+            <p>Añadiremos los minerales de este grupo.</p>
+
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- FILOSILICATOS -->
+
+<!-- =====================================================
+     FILOSILICATOS
+===================================================== -->
 
 <section id="filosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Filosilicatos</h2>
+
+    <h2 class="section-title">
+        📄 Filosilicatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Aerinita')">
+
+        <div
+            class="card"
+            onclick="ficha('Aerinita')"
+        >
+
+            <div class="card-icon">🔵</div>
+
             <h3>Aerinita</h3>
+
         </div>
 
-        <div class="card" onclick="ficha('Moscovita')">
+
+        <div
+            class="card"
+            onclick="ficha('Moscovita')"
+        >
+
+            <div class="card-icon">✨</div>
+
             <h3>Moscovita</h3>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- TECTOSILICATOS -->
+
+<!-- =====================================================
+     TECTOSILICATOS
+===================================================== -->
 
 <section id="tectosilicatos" class="hidden">
 
-    <button class="back" onclick="mostrar('silicatos')">
+    <button
+        class="back"
+        onclick="mostrar('silicatos')"
+    >
         ← Silicatos
     </button>
 
-    <h2>Tectosilicatos</h2>
+
+    <h2 class="section-title">
+        🕸️ Tectosilicatos
+    </h2>
+
 
     <div class="grid">
 
-        <div class="card" onclick="ficha('Cuarzo')">
+
+        <div
+            class="card"
+            onclick="mostrar('cuarzo')"
+        >
+
+            <div class="card-icon">💎</div>
+
             <h3>Cuarzo</h3>
-            <p>Incluye sus variedades</p>
+
+            <p>Mineral y variedades</p>
+
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- FICHA -->
+
+<!-- =====================================================
+     CUARZO
+===================================================== -->
+
+<section id="cuarzo" class="hidden">
+
+    <button
+        class="back"
+        onclick="mostrar('tectosilicatos')"
+    >
+        ← Tectosilicatos
+    </button>
+
+
+    <h2 class="section-title">
+        💎 Cuarzo
+    </h2>
+
+    <p class="subtitulo">
+        Cuarzo y sus principales variedades
+    </p>
+
+
+    <div class="grid">
+
+
+        <div
+            class="card"
+            onclick="ficha('Cuarzo')"
+        >
+
+            <div class="card-icon">💎</div>
+
+            <h3>Cuarzo</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Amatista')"
+        >
+
+            <div class="card-icon">💜</div>
+
+            <h3>Amatista</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Crisoprasa')"
+        >
+
+            <div class="card-icon">🟢</div>
+
+            <h3>Crisoprasa</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Cristal de roca')"
+        >
+
+            <div class="card-icon">🔮</div>
+
+            <h3>Cristal de roca</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Cuarzo lechoso')"
+        >
+
+            <div class="card-icon">🤍</div>
+
+            <h3>Cuarzo lechoso</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Cuarzo rosa')"
+        >
+
+            <div class="card-icon">🩷</div>
+
+            <h3>Cuarzo rosa</h3>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="ficha('Jacinto de Compostela')"
+        >
+
+            <div class="card-icon">❤️</div>
+
+            <h3>Jacinto de Compostela</h3>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FICHA MINERAL
+===================================================== -->
 
 <section id="ficha" class="hidden">
 
-    <button class="back" onclick="volverAnterior()">
+    <button
+        class="back"
+        onclick="volverAnterior()"
+    >
         ← Volver
     </button>
+
 
     <div class="mineral-ficha">
 
-        <h2 id="nombreMineral">Mineral</h2>
+        <h2
+            id="nombreMineral"
+            class="ficha-titulo"
+        >
+            Mineral
+        </h2>
+
 
         <div class="foto">
+
             📷 FOTO DEL MINERAL
+
         </div>
 
+
         <div class="dato">
+
             <strong>Tipo:</strong>
-            <span id="tipoMineral">—</span>
+
+            <span id="tipoMineral">
+                —
+            </span>
+
         </div>
 
+
         <div class="dato">
+
             <strong>Fórmula:</strong>
-            <span>—</span>
+
+            <span>
+                —
+            </span>
+
         </div>
 
+
         <div class="dato">
+
             <strong>Dureza:</strong>
-            <span>—</span>
+
+            <span>
+                —
+            </span>
+
         </div>
 
+
         <div class="dato">
+
             <strong>Raya:</strong>
-            <span>—</span>
+
+            <span>
+                —
+            </span>
+
         </div>
 
+
         <div class="dato">
+
             <strong>Brillo:</strong>
-            <span>—</span>
+
+            <span>
+                —
+            </span>
+
         </div>
 
+
         <div class="dato">
+
             <strong>Color:</strong>
-            <span>—</span>
+
+            <span>
+                —
+            </span>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- ROCAS -->
+
+<!-- =====================================================
+     ROCAS
+===================================================== -->
 
 <section id="rocas" class="hidden">
 
-    <button class="back" onclick="mostrar('inicio')">
+    <button
+        class="back"
+        onclick="mostrar('inicio')"
+    >
         ← Volver
     </button>
 
-    <h2>🪨 Rocas</h2>
+
+    <h2 class="section-title">
+        🪨 Rocas
+    </h2>
+
+    <p class="subtitulo">
+        Clasificación de las rocas
+    </p>
+
 
     <div class="grid">
 
+
         <div class="card">
+
+            <div class="card-icon">🌋</div>
+
             <h3>Ígneas</h3>
+
             <p>Próximamente</p>
+
         </div>
 
+
         <div class="card">
+
+            <div class="card-icon">🏜️</div>
+
             <h3>Sedimentarias</h3>
+
             <p>Próximamente</p>
+
         </div>
 
+
         <div class="card">
+
+            <div class="card-icon">⛰️</div>
+
             <h3>Metamórficas</h3>
+
             <p>Próximamente</p>
+
         </div>
+
 
     </div>
+
 </section>
+
+
 
 </main>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
 
 let seccionAnterior = "minerales";
 
 
+/* =========================
+   MOSTRAR SECCIÓN
+========================= */
+
 function mostrar(id) {
 
-    document.querySelectorAll("main > section").forEach(section => {
-        section.classList.add("hidden");
-    });
+    document
+        .querySelectorAll("main > section")
+        .forEach(section => {
 
-    document.getElementById(id).classList.remove("hidden");
+            section.classList.add("hidden");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.remove("hidden");
+
 
     if (id !== "ficha") {
+
         seccionAnterior = id;
+
     }
+
+
+    window.scrollTo(0, 0);
+
 }
 
+
+
+/* =========================
+   ABRIR FICHA
+========================= */
 
 function ficha(nombre) {
 
-    seccionAnterior = document.querySelector(
-        "main > section:not(.hidden)"
-    ).id;
+    seccionAnterior =
+        document
+        .querySelector("main > section:not(.hidden)")
+        .id;
 
-    document.getElementById("nombreMineral").textContent = nombre;
 
-    document.getElementById("tipoMineral").textContent =
-        obtenerTipo(nombre);
+    document
+        .getElementById("nombreMineral")
+        .textContent = nombre;
+
+
+    document
+        .getElementById("tipoMineral")
+        .textContent = obtenerTipo(nombre);
+
 
     mostrar("ficha");
+
 }
 
+
+
+/* =========================
+   VOLVER DE LA FICHA
+========================= */
 
 function volverAnterior() {
+
     mostrar(seccionAnterior);
+
 }
 
+
+
+/* =========================
+   TIPO DE MINERAL
+========================= */
 
 function obtenerTipo(nombre) {
 
     const tipos = {
 
-        "Oro": "Elemento nativo",
-        "Plata": "Elemento nativo",
-        "Cobre": "Elemento nativo",
-        "Azufre": "Elemento nativo",
 
-        "Antimonita": "Sulfuro",
-        "Cinabrio": "Sulfuro",
-        "Esfalerita": "Sulfuro",
-        "Galena": "Sulfuro",
-        "Pirita": "Sulfuro",
+        "Oro":
+            "Elemento nativo",
 
-        "Corindón": "Óxido",
-        "Rubí": "Óxido — variedad de corindón",
-        "Zafiro": "Óxido — variedad de corindón",
+        "Plata":
+            "Elemento nativo",
 
-        "Silvina": "Háluro",
+        "Cobre":
+            "Elemento nativo",
 
-        "Aragonito": "Carbonato",
-        "Calcita": "Carbonato",
+        "Azufre":
+            "Elemento nativo",
 
-        "Celestina": "Sulfato",
-        "Rosa del desierto": "Sulfato — forma de yeso",
-        "Yeso": "Sulfato",
-        "Yeso fibroso": "Sulfato — variedad/hábito del yeso",
 
-        "Topacio": "Nesosilicato",
-        "Epidota": "Sorosilicato",
-        "Esmeralda": "Ciclosilicato",
-        "Turmalina": "Ciclosilicato",
-        "Aerinita": "Filosilicato",
-        "Moscovita": "Filosilicato",
 
-        "Cuarzo": "Tectosilicato"
+        "Antimonita":
+            "Sulfuro",
+
+        "Cinabrio":
+            "Sulfuro",
+
+        "Esfalerita":
+            "Sulfuro",
+
+        "Galena":
+            "Sulfuro",
+
+        "Pirita":
+            "Sulfuro",
+
+
+
+        "Corindón":
+            "Óxido",
+
+        "Rubí":
+            "Óxido — variedad de corindón",
+
+        "Zafiro":
+            "Óxido — variedad de corindón",
+
+
+
+        "Silvina":
+            "Háluro",
+
+
+
+        "Aragonito":
+            "Carbonato",
+
+        "Calcita":
+            "Carbonato",
+
+
+
+        "Celestina":
+            "Sulfato",
+
+        "Rosa del desierto":
+            "Sulfato — forma de yeso",
+
+        "Yeso":
+            "Sulfato",
+
+        "Yeso fibroso":
+            "Sulfato — variedad de yeso",
+
+
+
+        "Topacio":
+            "Nesosilicato",
+
+        "Epidota":
+            "Sorosilicato",
+
+        "Esmeralda":
+            "Ciclosilicato",
+
+        "Turmalina":
+            "Ciclosilicato",
+
+        "Aerinita":
+            "Filosilicato",
+
+        "Moscovita":
+            "Filosilicato",
+
+
+
+        "Cuarzo":
+            "Tectosilicato",
+
+        "Amatista":
+            "Tectosilicato — variedad de cuarzo",
+
+        "Crisoprasa":
+            "Tectosilicato — variedad de cuarzo",
+
+        "Cristal de roca":
+            "Tectosilicato — variedad de cuarzo",
+
+        "Cuarzo lechoso":
+            "Tectosilicato — variedad de cuarzo",
+
+        "Cuarzo rosa":
+            "Tectosilicato — variedad de cuarzo",
+
+        "Jacinto de Compostela":
+            "Tectosilicato — variedad de cuarzo"
+
 
     };
 
+
     return tipos[nombre] || "—";
+
 }
+
 
 </script>
 
+
 </body>
 </html>
+```

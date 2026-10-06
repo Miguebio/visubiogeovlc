@@ -1582,21 +1582,13 @@ function ficha(nombre) {
         .querySelector("main > section:not(.hidden)")
         .id;
 
-
     document
         .getElementById("nombreMineral")
         .textContent = nombre;
 
-
-    document
-        .getElementById("tipoMineral")
-        .textContent = obtenerTipo(nombre);
-
-
     document
         .getElementById("imagenMineral")
-        .src = "img/minerales/" + nombre + ".png";
-
+        .src = "img/minerales/" + nombre.toLowerCase() + ".png";
 
     mostrar("ficha");
 

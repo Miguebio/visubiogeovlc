@@ -123,7 +123,9 @@ main {
 }
 
 .card-icon {
-    font-size: 3.2rem;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
     margin-bottom: 12px;
 }
 
@@ -229,7 +231,7 @@ main {
     }
 
     .grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 12px;
     }
 
@@ -287,7 +289,7 @@ main {
             onclick="mostrar('minerales')"
         >
 
-            <div class="card-icon">💎</div>
+            <img class="card-icon" src="img/minerales.png" alt="Minerales">
 
             <h3>Minerales</h3>
 

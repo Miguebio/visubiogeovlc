@@ -188,6 +188,65 @@ main {
 }
 
 
+
+/* =====================================================
+   PIE DE INICIO
+===================================================== */
+
+.inicio-footer {
+    margin-top: 35px;
+    padding: 25px 15px;
+    text-align: center;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+}
+
+.inicio-footer p {
+    margin: 0 0 15px;
+    color: #607d8b;
+    font-size: 0.9rem;
+}
+
+.inicio-footer strong {
+    color: #263238;
+}
+
+.redes-sociales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+.red-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.red-social:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.red-social img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.usuario-redes {
+    margin-top: 12px;
+    color: #78909c;
+    font-size: 0.85rem;
+}
+
+
 /* =====================================================
    FICHA
 ===================================================== */
@@ -447,6 +506,49 @@ main {
 
 
     </div>
+
+
+    <footer class="inicio-footer">
+
+        <p>
+            Hecho por <strong>MigueBio</strong>
+        </p>
+
+        <div class="redes-sociales">
+
+            <a
+                class="red-social"
+                href="https://www.instagram.com/miguebio_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de MigueBio"
+            >
+                <img
+                    src="img/instagram.png"
+                    alt="Instagram"
+                >
+            </a>
+
+            <a
+                class="red-social"
+                href="https://www.youtube.com/@MigueBio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube de MigueBio"
+            >
+                <img
+                    src="img/youtube.png"
+                    alt="YouTube"
+                >
+            </a>
+
+        </div>
+
+        <div class="usuario-redes">
+            @2026Miguebio
+        </div>
+
+    </footer>
 
 </section>
 

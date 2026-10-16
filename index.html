@@ -198,6 +198,10 @@ main {
     border-top: 6px solid #ffbd59;
 }
 
+.card-paisajes {
+    border-top: 6px solid #26a69a;
+}
+
 
 /* =====================================================
    PIE DE INICIO
@@ -436,10 +440,10 @@ main {
         </div>
 
         <!-- OTROS -->
-        <div class="card card-otros">
+        <div class="card card-otros" onclick="mostrar('otros')">
             <img class="card-icon" src="img/Otros.png" alt="Otros">
             <h3>Otros</h3>
-            <p>Próximamente</p>
+            <p>Más contenidos</p>
         </div>
 
     </div>
@@ -1116,7 +1120,130 @@ main {
 
 
 <!-- =====================================================
-     FICHA MINERAL
+     OTROS
+===================================================== -->
+
+<section id="otros" class="hidden">
+
+    <button class="back" onclick="mostrar('inicio')">
+        ← Volver
+    </button>
+
+    <h2 class="section-title">
+        📚 Otros
+    </h2>
+
+    <p class="subtitulo">
+        Otros contenidos de Biología y Geología
+    </p>
+
+    <div class="grid">
+
+        <!-- PAISAJES -->
+        <div class="card card-paisajes" onclick="mostrar('paisajes')">
+            <div class="card-icon">🏞️</div>
+            <h3>Paisajes</h3>
+            <p>Comunitat Valenciana</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAISAJES
+===================================================== -->
+
+<section id="paisajes" class="hidden">
+
+    <button class="back" onclick="mostrar('otros')">
+        ← Otros
+    </button>
+
+    <h2 class="section-title">
+        🏞️ Paisajes
+    </h2>
+
+    <p class="subtitulo">
+        Tipos de paisaje de la Comunitat Valenciana
+    </p>
+
+    <div class="grid">
+
+        <!-- ÁRIDO -->
+        <div class="card" onclick="fichaPaisaje('Árido')">
+            <div class="card-icon">🏜️</div>
+            <h3>Árido</h3>
+        </div>
+
+        <!-- LITORAL -->
+        <div class="card" onclick="fichaPaisaje('Litoral')">
+            <div class="card-icon">🌊</div>
+            <h3>Litoral</h3>
+        </div>
+
+        <!-- FLUVIAL -->
+        <div class="card" onclick="fichaPaisaje('Fluvial')">
+            <div class="card-icon">🏞️</div>
+            <h3>Fluvial</h3>
+        </div>
+
+        <!-- HUMEDALES -->
+        <div class="card" onclick="fichaPaisaje('Humedales')">
+            <div class="card-icon">💧</div>
+            <h3>Humedales</h3>
+        </div>
+
+        <!-- FORESTAL -->
+        <div class="card" onclick="fichaPaisaje('Forestal')">
+            <div class="card-icon">🌲</div>
+            <h3>Forestal</h3>
+        </div>
+
+        <!-- MONTAÑA -->
+        <div class="card" onclick="fichaPaisaje('Montaña')">
+            <div class="card-icon">⛰️</div>
+            <h3>Montaña</h3>
+        </div>
+
+        <!-- AGRÍCOLA -->
+        <div class="card" onclick="fichaPaisaje('Agrícola')">
+            <div class="card-icon">🌾</div>
+            <h3>Agrícola</h3>
+        </div>
+
+        <!-- KÁRSTICO -->
+        <div class="card" onclick="fichaPaisaje('Kárstico')">
+            <div class="card-icon">🪨</div>
+            <h3>Kárstico</h3>
+        </div>
+
+        <!-- VOLCÁNICO -->
+        <div class="card" onclick="fichaPaisaje('Volcánico')">
+            <div class="card-icon">🌋</div>
+            <h3>Volcánico</h3>
+        </div>
+
+        <!-- URBANO -->
+        <div class="card" onclick="fichaPaisaje('Urbano')">
+            <div class="card-icon">🏙️</div>
+            <h3>Urbano</h3>
+        </div>
+
+        <!-- AGROFORESTAL -->
+        <div class="card" onclick="fichaPaisaje('Agroforestal')">
+            <div class="card-icon">🌳</div>
+            <h3>Agroforestal</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FICHA
 ===================================================== -->
 
 <section id="ficha" class="hidden">
@@ -1132,7 +1259,7 @@ main {
             <img
                 id="imagenMineral"
                 src=""
-                alt="Fotografía del mineral"
+                alt="Fotografía"
             >
 
         </div>
@@ -1228,7 +1355,7 @@ function mostrar(id) {
 
 
 /* =====================================================
-   ABRIR FICHA
+   ABRIR FICHA DE MINERAL
 ===================================================== */
 
 function ficha(nombre) {
@@ -1242,6 +1369,55 @@ function ficha(nombre) {
     document
         .getElementById("imagenMineral")
         .src = "img/minerales/" + nombre.toLowerCase() + ".png";
+
+
+    document
+        .getElementById("imagenMineral")
+        .alt = "Fotografía de " + nombre;
+
+
+    mostrar("ficha");
+
+}
+
+
+/* =====================================================
+   ABRIR FICHA DE PAISAJE
+===================================================== */
+
+function fichaPaisaje(nombre) {
+
+    seccionAnterior =
+        document
+        .querySelector("main > section:not(.hidden)")
+        .id;
+
+
+    const archivos = {
+
+        "Árido": "arido.png",
+        "Litoral": "litoral.png",
+        "Fluvial": "fluvial.png",
+        "Humedales": "humedales.png",
+        "Forestal": "forestal.png",
+        "Montaña": "montana.png",
+        "Agrícola": "agricola.png",
+        "Kárstico": "karstico.png",
+        "Volcánico": "volcanico.png",
+        "Urbano": "urbano.png",
+        "Agroforestal": "agroforestal.png"
+
+    };
+
+
+    document
+        .getElementById("imagenMineral")
+        .src = "img/paisajes/" + archivos[nombre];
+
+
+    document
+        .getElementById("imagenMineral")
+        .alt = "Fotografía del paisaje " + nombre;
 
 
     mostrar("ficha");
